@@ -1,0 +1,35 @@
+body {
+    background-color: ghostwhite;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#container {
+    background-color: white;
+    padding: 180px;
+    text-align: center;
+    position: relative;
+    top: 300px;
+    width: 300px;
+    margin: auto;
+}
+
+/* Select elements created by JS */
+.task {
+    font-size: 22px;
+    list-style: square;
+}
+
+.delete {
+    font-size: 30px;
+    color: red;
+    margin-left: 20px;
+    cursor: pointer;
+}
+
+.delete:hover {
+    color: rgb(255, 104, 104);
+}
+
+.delete:active {
+    color: rgb(202, 0, 0);
+}
