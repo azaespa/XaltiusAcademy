@@ -1,0 +1,30 @@
+form {
+    text-align: center;
+    border: 1px solid black;
+    border-radius: 10px;
+    width: 400px;
+    margin: auto;
+    padding: 100px;
+}
+
+label {
+    font-size: 30px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+input {
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+
+button {
+    font-size: 30px;
+    border: none;
+    background-color: orange;
+    border-radius: 10px;
+    color: white;
+}
+
+button:hover {
+    background-color: rgb(255, 185, 54);
+}
