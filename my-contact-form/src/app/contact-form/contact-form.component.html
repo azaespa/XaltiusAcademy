@@ -1,0 +1,31 @@
+<main>
+    <section class="contact-section">
+        <div class="contact-form">
+            <h1 class="form-title">SEND US A MESSAGE</h1>
+            <form id="myForm" #myForm="ngForm" (ngSubmit)="submitForm(myForm)">
+                <!-- name, email, message, and a submit button. -->
+                <input type="text" name="name" placeholder="Type your full name*" [(ngModel)]="formData.name"
+                    #name="ngModel" [ngClass]="name.touched && name.errors ? 'name-invalid' : 'name-valid'" required>
+                <span class="name-error" *ngIf="name.touched && name.errors">Name required.</span><br>
+
+                <input type="email" name="email" placeholder="Email address*" [(ngModel)]="formData.email"
+                    #email="ngModel" [ngClass]="email.touched && email.errors ? 'email-invalid' : 'email-valid'"
+                    required email>
+                <span class="email-error" *ngIf="email.touched && email.errors">Email required.</span><br>
+
+                <textarea name="message" cols="30" rows="10" placeholder="Type your message here*"
+                    [(ngModel)]="formData.message" #message="ngModel"
+                    [ngClass]="message.touched && message.errors ? 'message-invalid' : 'message-valid'"
+                    required></textarea><span class="message-error" *ngIf="message.touched && message.errors">Message
+                    required.</span><br>
+
+                <button id="submit" type="submit">SUBMIT</button>
+            </form>
+
+            <div *ngIf="success">
+                <p style="color: green;">Success! Your message has been sent.</p>
+            </div>
+        </div>
+    </section>
+    <section class="img-container"></section>
+</main>

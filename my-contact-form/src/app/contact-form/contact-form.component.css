@@ -1,0 +1,103 @@
+main {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+}
+
+.contact-section {
+    width: 40%;
+    display: flex;
+    justify-content: center;
+}
+
+.contact-form {
+    margin: 0 50px;
+    width: 520px;
+}
+
+#myForm {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-title {
+    margin-bottom: 1rem;
+    font-weight: 800;
+    font-size: 1.75rem;
+}
+
+input {
+    height: 30px;
+    width: 500px;
+    padding: 2px 10px;
+}
+
+textarea {
+    resize: none;
+    width: 500px;
+    height: 80px;
+    padding: 10px;
+}
+
+input,
+textarea {
+    font-size: 12px;
+    border: 1px solid rgb(182, 182, 182);
+    background-color: transparent;
+}
+
+input:focus,
+textarea:focus {
+    outline: none;
+}
+
+#submit {
+    align-self: flex-end;
+    height: 2.5rem;
+    width: 8rem;
+    font-weight: 900;
+    color: white;
+    background-color: rgb(22, 22, 22);
+    border-radius: 5px;
+}
+
+#submit:hover {
+    cursor: pointer;
+    background-color: rgb(53, 53, 53);
+}
+
+.img-container {
+    width: 60%;
+    height: 100%;
+    background-image: url('../../assets/sample-img.jpg');
+    background-size: cover;
+}
+
+.name-error,
+.email-error,
+.message-error {
+    font-size: 12px;
+    color: red;
+    margin-top: 0.5rem;
+}
+
+.name-valid,
+.email-valid,
+.message-valid {
+    border: 1px solid rgb(182, 182, 182);
+}
+
+.name-invalid,
+.email-invalid,
+.message-invalid {
+    border: 1px solid red;
+}
+
+.name-invalid::placeholder,
+.email-invalid::placeholder,
+.message-invalid::placeholder {
+    color: red;
+}
