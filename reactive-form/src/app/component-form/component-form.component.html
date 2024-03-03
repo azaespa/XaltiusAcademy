@@ -1,0 +1,14 @@
+<form action="" [formGroup]="myForm" (ngSubmit)="onSubmit()">
+    <label for="name">Name</label>
+    <input type="text" name="name" id="name" formControlName="name"><br>
+
+    <label for="occupation">Occupation</label>
+    <input type="text" name="occupation" id="occupation" formControlName="occupation"><br>
+
+    <label for="email">Email</label>
+    <input type="email" name="email" id="email" formControlName="email"><br>
+
+    <button type="submit" [disabled]="myForm.invalid">Submit</button>
+
+    <p id="success" *ngIf="myForm.valid">{{ submissionResult }}</p>
+</form>
