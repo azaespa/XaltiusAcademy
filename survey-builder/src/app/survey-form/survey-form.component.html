@@ -1,0 +1,9 @@
+<!-- multiple choice, text input, rating scale, etc. -->
+
+<!-- TEXT INPUT FORM -->
+<form action="" [formGroup]="myForm" (ngSubmit)="onSubmit()">
+    <label for="text-input">Question 1</label><br>
+    <p>If this is a question, what is your answer?</p>
+    <input type="text" name="text-input" id="text-input" formControlName="answerText">
+    <button type="submit">Submit</button>
+</form>
