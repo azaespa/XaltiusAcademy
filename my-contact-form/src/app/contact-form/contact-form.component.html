@@ -16,7 +16,8 @@
                 <textarea name="message" cols="30" rows="10" placeholder="Type your message here*"
                     [(ngModel)]="formData.message" #message="ngModel"
                     [ngClass]="message.touched && message.errors ? 'message-invalid' : 'message-valid'"
-                    required></textarea><span class="message-error" *ngIf="message.touched && message.errors">Message
+                    required></textarea>
+                <span class="message-error" *ngIf="message.touched && message.errors">Message
                     required.</span><br>
 
                 <button id="submit" type="submit">SUBMIT</button>
