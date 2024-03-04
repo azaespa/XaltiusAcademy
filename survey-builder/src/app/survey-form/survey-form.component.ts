@@ -8,6 +8,9 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 })
 export class SurveyFormComponent implements OnInit {
   myForm: FormGroup = new FormGroup({});
+  question: string = 'If this is a question, what is your answer?';
+  answerInput: string = "text";
+  showForm: boolean = true;
 
   constructor(private formBuilder: FormBuilder) {}
 
@@ -23,5 +26,14 @@ export class SurveyFormComponent implements OnInit {
     } else {
       alert('INVALID');
     }
+  }
+
+  showFormBuilder() {
+    this.showForm = !this.showForm;
+  }
+
+  updateQuestion(question: FormGroup) {
+    this.question = question.value.questionBuilder;
+    this.answerInput = question.value.answerInput;
   }
 }

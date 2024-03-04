@@ -1,9 +1,14 @@
 <!-- multiple choice, text input, rating scale, etc. -->
 
+<!-- make a button that will open the floating form builder interface -->
+
+<button type="button" (click)="showFormBuilder()">Form Builder</button>
+<app-form-builder *ngIf="showForm" (updateQuestion)="updateQuestion($event)"></app-form-builder>
+
 <!-- TEXT INPUT FORM -->
 <form action="" [formGroup]="myForm" (ngSubmit)="onSubmit()">
     <label for="text-input">Question 1</label><br>
-    <p>If this is a question, what is your answer?</p>
-    <input type="text" name="text-input" id="text-input" formControlName="answerText">
+    <p>{{ question }}</p>
+    <input [type]="answerInput" name="text-input" id="text-input" formControlName="answerText">
     <button type="submit">Submit</button>
 </form>

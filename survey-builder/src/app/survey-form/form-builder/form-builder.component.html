@@ -1,0 +1,13 @@
+<form action="" [formGroup]="myForm" (ngSubmit)="onUpdateQuestion(myForm)">
+    <h1>Form Builder</h1>
+    <h3>Add a question</h3>
+    <input type="text" #questionBuilder name="questionBuilder" id="questionBuilder" formControlName="questionBuilder">
+
+    <h3>Type of answer input</h3>
+    <input type="radio" name="answerInput" id="radio" formControlName="answerInput" value="radio">
+    <label for="radio">Radio</label><br>
+    <input type="radio" name="answerInput" id="text" formControlName="answerInput" value="text">
+    <label for="radio">Text</label><br>
+
+    <button type="submit">Submit</button>
+</form>
