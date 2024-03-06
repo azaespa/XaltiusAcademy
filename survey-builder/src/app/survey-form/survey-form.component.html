@@ -2,7 +2,7 @@
 
 <!-- make a button that will open the floating form builder interface -->
 
-<button type="button" (click)="showFormBuilder()">Form Builder</button>
+<button type="button" (click)="toggleFormBuilder()">Form Builder</button>
 <app-form-builder *ngIf="showForm" (createQuestionForm)="createQuestionForm($event)"></app-form-builder>
 
 <!-- NGfor to generate the list of questions from the survey form array -->
@@ -13,6 +13,6 @@
             <p>
                 {{q.value | json}}
             </p>
-        </div>        
+        </div>
     </div>
 </div>
