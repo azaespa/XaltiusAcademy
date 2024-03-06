@@ -3,15 +3,13 @@
 <!-- make a button that will open the floating form builder interface -->
 
 <button type="button" (click)="showFormBuilder()">Form Builder</button>
-<app-form-builder *ngIf="showForm" (updateQuestion)="addQuestion($event)"></app-form-builder>
-
-<!-- TEXT INPUT FORM -->
+<app-form-builder *ngIf="showForm" (createQuestionForm)="createQuestionForm($event)"></app-form-builder>
 
 <!-- NGfor to generate the list of questions from the survey form array -->
 
 <div [formGroup]="surveyForm">
-    <div formArrayName="questions">
-        <div [formGroupName]="i" *ngFor="let q of questions.controls; let i = index">
+    <div formArrayName="questionForms">
+        <div *ngFor="let q of questionForms.controls">
             <p>
                 {{q.value | json}}
             </p>

@@ -12,11 +12,6 @@ export class SurveyFormComponent implements OnInit {
   
   showForm: boolean = true;
   
-  answerInput: string = 'text';
-  question: string = 'If this is a question, what is your answer?';
-
-  users: string[] = ['a', 'a', 'a'];
-
   constructor(private formBuilder: FormBuilder) {}
 
   //form array
@@ -25,19 +20,28 @@ export class SurveyFormComponent implements OnInit {
   ngOnInit(): void {}
 
   surveyForm: FormGroup = this.formBuilder.group({
-    questions: this.formBuilder.array([]),
+    questionForms: this.formBuilder.array([]),
   });
 
-  get questions() {
-    return this.surveyForm.controls['questions'] as FormArray;
+  get questionForms() {
+    return this.surveyForm.controls['questionForms'] as FormArray;
   }
 
-  addQuestion(question: FormGroup) {
-    this.newForm = this.formBuilder.group({
-      "question": [question.value['questionBuilder']],
-      "answer": [question.value['answerInputType']]
-    })
-    this.questions.push(this.newForm);
+  createQuestionForm(questionForm: FormGroup) {
+    if(!questionForm.value['choices']) {
+      this.newForm = this.formBuilder.group({
+        "question": [questionForm.value['questionBuilder']],
+        "answer": [questionForm.value['answerInputType']],
+      })
+    } 
+    else {
+      this.newForm = this.formBuilder.group({
+        "question": [questionForm.value['questionBuilder']],
+        "answer": [questionForm.value['answerInputType']],
+        "choices": [questionForm.value['choices']],
+      })
+    }
+    this.questionForms.push(this.newForm);
   }
 
   onSubmit() {
@@ -50,10 +54,5 @@ export class SurveyFormComponent implements OnInit {
 
   showFormBuilder() {
     this.showForm = !this.showForm;
-  }
-
-  updateQuestion(question: FormGroup) {
-    this.question = question.value.questionBuilder;
-    this.answerInput = question.value.answerInput;
   }
 }

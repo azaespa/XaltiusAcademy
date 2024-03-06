@@ -1,4 +1,4 @@
-<form action="" [formGroup]="fbForm" (ngSubmit)="onUpdateQuestion(fbForm)">
+<form action="" [formGroup]="fbForm" (ngSubmit)="onCreateQuestionForm(fbForm)">
     <h1>Form Builder</h1>
     <h3>Add a question</h3>
     <input type="text" #questionBuilder name="questionBuilder" id="questionBuilder" formControlName="questionBuilder">
@@ -9,31 +9,28 @@
     <input type="radio" name="answerInputType" id="text" formControlName="answerInputType" value="text">
     <label>Text</label>
 
-    <form *ngIf="radio.checked" [formGroup]="fbRadioForm" (ngSubmit)="onSetAnswers()">
-        <div formGroupName="choices">
+    <form *ngIf="radio.checked" [formGroup]="fbRadioForm" (ngSubmit)="onSetAnswers(fbRadioForm)">
+        <input type="radio" name="" id="">
+        <label>A.</label>
+        <input type="text" name="choiceA" id="" formControlName="choiceA">
+        <br>
 
-            <input type="radio" name="" id="">
-            <label>A.</label>
-            <input type="text" name="choiceA" id="" formControlName="choiceA">
-            <br>
+        <input type="radio" name="" id="">
+        <label>B.</label>
+        <input type="text" name="choiceB" id="" formControlName="choiceB">
+        <br>
 
-            <input type="radio" name="" id="">
-            <label>B.</label>
-            <input type="text" name="choiceB" id="" formControlName="choiceB">
-            <br>
+        <input type="radio" name="" id="">
+        <label>C.</label>
+        <input type="text" name="choiceC" id="" formControlName="choiceC">
+        <br>
 
-            <input type="radio" name="" id="">
-            <label>C.</label>
-            <input type="text" name="choiceC" id="" formControlName="choiceC">
-            <br>
+        <input type="radio" name="" id="">
+        <label>D.</label>
+        <input type="text" name="choiceD" id="" formControlName="choiceD">
+        <br>
 
-            <input type="radio" name="" id="">
-            <label>D.</label>
-            <input type="text" name="choiceD" id="" formControlName="choiceD">
-            <br>
-
-            <button type="submit">Set answers</button>
-        </div>
+        <button type="submit">Set answers</button>
     </form>
 
     <br>
