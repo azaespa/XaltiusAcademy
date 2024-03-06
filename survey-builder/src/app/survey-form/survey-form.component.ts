@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, FormArray, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-survey-form',
@@ -8,16 +8,36 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 })
 export class SurveyFormComponent implements OnInit {
   myForm: FormGroup = new FormGroup({});
-  question: string = 'If this is a question, what is your answer?';
-  answerInput: string = "text";
+  newForm: FormGroup = new FormGroup({})
+  
   showForm: boolean = true;
+  
+  answerInput: string = 'text';
+  question: string = 'If this is a question, what is your answer?';
+
+  users: string[] = ['a', 'a', 'a'];
 
   constructor(private formBuilder: FormBuilder) {}
 
-  ngOnInit(): void {
-    this.myForm = this.formBuilder.group({
-      answerText: ['', Validators.required],
-    });
+  //form array
+  //inside of it will be the form group populated by fb component
+  //will then be generated to survey form by ngfor
+  ngOnInit(): void {}
+
+  surveyForm: FormGroup = this.formBuilder.group({
+    questions: this.formBuilder.array([]),
+  });
+
+  get questions() {
+    return this.surveyForm.controls['questions'] as FormArray;
+  }
+
+  addQuestion(question: FormGroup) {
+    this.newForm = this.formBuilder.group({
+      "question": [question.value['questionBuilder']],
+      "answer": [question.value['answerInputType']]
+    })
+    this.questions.push(this.newForm);
   }
 
   onSubmit() {

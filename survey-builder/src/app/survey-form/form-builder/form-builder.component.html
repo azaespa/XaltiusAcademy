@@ -1,13 +1,41 @@
-<form action="" [formGroup]="myForm" (ngSubmit)="onUpdateQuestion(myForm)">
+<form action="" [formGroup]="fbForm" (ngSubmit)="onUpdateQuestion(fbForm)">
     <h1>Form Builder</h1>
     <h3>Add a question</h3>
     <input type="text" #questionBuilder name="questionBuilder" id="questionBuilder" formControlName="questionBuilder">
 
     <h3>Type of answer input</h3>
-    <input type="radio" name="answerInput" id="radio" formControlName="answerInput" value="radio">
-    <label for="radio">Radio</label><br>
-    <input type="radio" name="answerInput" id="text" formControlName="answerInput" value="text">
-    <label for="radio">Text</label><br>
+    <input type="radio" #radio name="answerInputType" id="radio" formControlName="answerInputType" value="radio">
+    <label>Radio</label>
+    <input type="radio" name="answerInputType" id="text" formControlName="answerInputType" value="text">
+    <label>Text</label>
 
+    <form *ngIf="radio.checked" [formGroup]="fbRadioForm" (ngSubmit)="onSetAnswers()">
+        <div formGroupName="choices">
+
+            <input type="radio" name="" id="">
+            <label>A.</label>
+            <input type="text" name="choiceA" id="" formControlName="choiceA">
+            <br>
+
+            <input type="radio" name="" id="">
+            <label>B.</label>
+            <input type="text" name="choiceB" id="" formControlName="choiceB">
+            <br>
+
+            <input type="radio" name="" id="">
+            <label>C.</label>
+            <input type="text" name="choiceC" id="" formControlName="choiceC">
+            <br>
+
+            <input type="radio" name="" id="">
+            <label>D.</label>
+            <input type="text" name="choiceD" id="" formControlName="choiceD">
+            <br>
+
+            <button type="submit">Set answers</button>
+        </div>
+    </form>
+
+    <br>
     <button type="submit">Submit</button>
 </form>

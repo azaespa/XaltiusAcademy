@@ -1,5 +1,11 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import {
+  FormGroup,
+  FormBuilder,
+  Validators,
+  FormArray,
+  Form,
+} from '@angular/forms';
 
 @Component({
   selector: 'app-form-builder',
@@ -7,20 +13,42 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./form-builder.component.css'],
 })
 export class FormBuilderComponent implements OnInit {
-  myForm: FormGroup = new FormGroup({});
+  fbForm: FormGroup = new FormGroup({});
+  fbTextForm: FormGroup = this.formBuilder.group({
+    questionBuilder: [''],
+    answerInputType: [''],
+  });
+  fbRadioForm: FormGroup = this.formBuilder.group({
+    questionBuilder: [''],
+    answerInputType: [''],
+    choices: this.formBuilder.group({
+      choiceA: [''],
+      choiceB: [''],
+      choiceC: [''],
+      choiceD: [''],
+    }),
+  });
 
   @Output() updateQuestion = new EventEmitter<FormGroup>();
 
   constructor(private formBuilder: FormBuilder) {}
 
   ngOnInit(): void {
-    this.myForm = this.formBuilder.group({
+    this.fbForm = this.formBuilder.group({
       questionBuilder: [''],
-      answerInput: ['']
+      answerInputType: ['', Validators.required],
     });
   }
 
+  onSetAnswers() {
+    console.log(this.fbRadioForm);
+  }
+
   onUpdateQuestion(question: FormGroup) {
-    this.updateQuestion.emit(question);
+    if(question.valid) {
+      this.updateQuestion.emit(question);
+    } else {
+      alert("WOW")
+    }
   }
 }
