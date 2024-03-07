@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, FormArray, Validators } from '@angular/forms';
+import {
+  FormGroup,
+  FormBuilder,
+  FormArray,
+  Validators,
+  ValidatorFn,
+} from '@angular/forms';
 
 @Component({
   selector: 'app-survey-form',
@@ -15,7 +21,7 @@ export class SurveyFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.surveyForm = this.formBuilder.group({
-      questionForms: this.formBuilder.array([]),
+      questionForms: this.formBuilder.array([], this.customValidator()),
     });
   }
 
@@ -28,18 +34,30 @@ export class SurveyFormComponent implements OnInit {
       this.questionForms.push(
         this.formBuilder.group({
           question: [questionForm.value['questionBuilder']],
-          answer: [questionForm.value['answerInputType']],
+          answer: ['', Validators.required],
+          answerInputType: [questionForm.value['answerInputType']],
         })
       );
     } else {
       this.questionForms.push(
         this.formBuilder.group({
           question: [questionForm.value['questionBuilder']],
-          answer: [questionForm.value['answerInputType']],
-          choices: [questionForm.value['choices']],
+          answer: [''],
+          answerInputType: [questionForm.value['answerInputType']],
+          choices: [questionForm.value['choices'], Validators.required],
         })
       );
     }
+  }
+
+  customValidator(): ValidatorFn {
+    return Validators.required;
+  }
+
+  formTest() {
+    console.log(
+      this.questionForms.controls.findIndex((fg) => fg.invalid) === -1
+    );
   }
 
   toggleFormBuilder() {

@@ -7,12 +7,30 @@
 
 <!-- NGfor to generate the list of questions from the survey form array -->
 
-<div [formGroup]="surveyForm">
+<form [formGroup]="surveyForm" (ngSubmit)="formTest()">
     <div formArrayName="questionForms">
-        <div *ngFor="let q of questionForms.controls">
-            <p>
-                {{q.value | json}}
-            </p>
+        <div *ngFor="let q of questionForms.controls; let i = index" [formGroupName]="i">
+            <ng-container *ngIf="q.value['answerInputType'] == 'text'; else radio">
+                <label for="qText">{{ q.value['question'] }}</label>
+                <input type="text" formControlName="answer">
+            </ng-container>
+            <ng-template #radio>
+                <ng-container>
+                    <label for="qRadio">{{ q.value['question'] }}</label>
+                    <input type="radio" name="choices">
+                    <label for="choices">{{ q.value['choices'].choiceA }}</label><br>
+
+                    <input type="radio" name="choices">
+                    <label for="choices">{{ q.value['choices'].choiceB }}</label><br>
+
+                    <input type="radio" name="choices">
+                    <label for="choices">{{ q.value['choices'].choiceC }}</label><br>
+
+                    <input type="radio" name="choices">
+                    <label for="choices">{{ q.value['choices'].choiceD }}</label><br>
+                </ng-container>
+            </ng-template>
         </div>
+        <button type="submit">Submit</button>
     </div>
-</div>
+</form>
