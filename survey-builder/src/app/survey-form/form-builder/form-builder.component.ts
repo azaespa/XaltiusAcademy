@@ -7,7 +7,10 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./form-builder.component.css'],
 })
 export class FormBuilderComponent implements OnInit {
-  fbForm: FormGroup = new FormGroup({});
+  fbForm: FormGroup = this.formBuilder.group({
+    questionBuilder: ['', Validators.required],
+    answerInputType: ['', Validators.required],
+  });
   fbRadioForm: FormGroup = this.formBuilder.group({
     choiceA: ['', Validators.required],
     choiceB: ['', Validators.required],
@@ -17,38 +20,25 @@ export class FormBuilderComponent implements OnInit {
 
   @Output() createQuestionForm = new EventEmitter<FormGroup>();
 
-  constructor(private formBuilder: FormBuilder) {}
-
-  ngOnInit(): void {
-    this.fbForm = this.formBuilder.group({
-      questionBuilder: ['', Validators.required],
-      answerInputType: ['', Validators.required],
-    });
+  constructor(private formBuilder: FormBuilder) {
+    this.fbForm.controls['answerInputType'].valueChanges.subscribe(
+      (inputType) => {
+        if (inputType == 'text') {
+          this.fbForm.removeControl('choices');
+        } else {
+          this.fbForm.addControl('choices', this.fbRadioForm);
+        }
+      }
+    );
   }
 
-  onSetAnswers(radioForm: FormGroup) {
-    if (radioForm.valid) {
-      // alert('VALID');
-    } else {
-      // alert('INVALID');
-    }
-  }
+  ngOnInit(): void {}
 
   onCreateQuestionForm(questionForm: FormGroup) {
     if (questionForm.valid) {
-      //Form cleanup
-      if (questionForm.value['choices']) {
-        questionForm.removeControl('choices');
-      }
-
-      //Conditional adding of new controls to the form
-      if (questionForm.value['answerInputType'] == 'radio') {
-        questionForm.addControl('choices', this.fbRadioForm);
-      }
-
       this.createQuestionForm.emit(questionForm);
     } else {
-      alert('WOW');
+      alert('INVALID');
     }
   }
 }
