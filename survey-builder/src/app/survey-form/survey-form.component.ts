@@ -30,7 +30,7 @@ export class SurveyFormComponent implements OnInit {
   }
 
   createQuestionForm(questionForm: FormGroup) {
-    if (!questionForm.value['choices']) {
+    if (questionForm.value['answerInputType'] === 'text') {
       this.questionForms.push(
         this.formBuilder.group({
           question: [questionForm.value['questionBuilder']],
@@ -48,10 +48,6 @@ export class SurveyFormComponent implements OnInit {
         })
       );
     }
-  }
-
-  customValidator(): ValidatorFn {
-    return Validators.required;
   }
 
   formTest() {

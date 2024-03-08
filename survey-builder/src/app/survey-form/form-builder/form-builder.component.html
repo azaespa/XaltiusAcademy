@@ -1,5 +1,5 @@
+<h1>Form Builder</h1>
 <form action="" [formGroup]="fbForm" (ngSubmit)="onCreateQuestionForm(fbForm)">
-    <h1>Form Builder</h1>
     <h3>Add a question</h3>
     <input type="text" #questionBuilder name="questionBuilder" id="questionBuilder" formControlName="questionBuilder">
 
@@ -8,6 +8,8 @@
     <label>Radio</label>
     <input type="radio" name="answerInputType" id="text" formControlName="answerInputType" value="text">
     <label>Text</label>
+    <input type="radio" #rating name="answerInputType" id="rating" formControlName="answerInputType" value="rating">
+    <label>Rating</label>
 
     <!-- I used formGroup instead of formGroupName -->
     <!-- even we already added fbRadioForm to fbForm as 'choices' -->
@@ -34,8 +36,22 @@
         <input type="text" name="choiceD" id="" formControlName="choiceD">
         <br>
     </div>
+    <div *ngIf="rating.checked" [formGroup]="fbRatingForm">
+        <input type="radio" name="" id="">
+        <label>1</label>
+        <input type="radio" name="" id="">
+        <label>2</label>
+        <input type="radio" name="" id="">
+        <label>3</label>
+        <input type="radio" name="" id="">
+        <label>4</label>
+        <input type="radio" name="" id="">
+        <label>5</label>
+    </div>
+    <br>
     <br>
     {{ fbForm.value | json }}
     <br>
-    <button type="submit">Submit</button> is fbForm valid: {{ fbForm.valid }}
+    <br>
+    <button type="submit">Add</button> is fbForm valid: {{ fbForm.valid }}
 </form>

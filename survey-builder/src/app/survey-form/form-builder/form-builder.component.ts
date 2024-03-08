@@ -17,6 +17,13 @@ export class FormBuilderComponent implements OnInit {
     choiceC: ['', Validators.required],
     choiceD: ['', Validators.required],
   });
+  fbRatingForm: FormGroup = this.formBuilder.group({
+    choice1: ['1'],
+    choice2: ['2'],
+    choice3: ['3'],
+    choice4: ['4'],
+    choice5: ['5'],
+  });
 
   @Output() createQuestionForm = new EventEmitter<FormGroup>();
 
@@ -25,7 +32,11 @@ export class FormBuilderComponent implements OnInit {
       (inputType) => {
         if (inputType == 'text') {
           this.fbForm.removeControl('choices');
+        } else if (inputType == 'rating') {
+          this.fbForm.removeControl('choices');
+          this.fbForm.addControl('choices', this.fbRatingForm);
         } else {
+          this.fbForm.removeControl('choices');
           this.fbForm.addControl('choices', this.fbRadioForm);
         }
       }
