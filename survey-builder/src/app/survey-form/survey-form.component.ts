@@ -21,7 +21,7 @@ export class SurveyFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.surveyForm = this.formBuilder.group({
-      questionForms: this.formBuilder.array([], this.customValidator()),
+      questionForms: this.formBuilder.array([], Validators.required),
     });
   }
 
@@ -42,9 +42,9 @@ export class SurveyFormComponent implements OnInit {
       this.questionForms.push(
         this.formBuilder.group({
           question: [questionForm.value['questionBuilder']],
-          answer: [''],
+          answer: ['', Validators.required],
           answerInputType: [questionForm.value['answerInputType']],
-          choices: [questionForm.value['choices'], Validators.required],
+          choices: [questionForm.value['choices']],
         })
       );
     }
@@ -55,9 +55,11 @@ export class SurveyFormComponent implements OnInit {
   }
 
   formTest() {
-    console.log(
-      this.questionForms.controls.findIndex((fg) => fg.invalid) === -1
-    );
+    if (this.questionForms.valid) {
+      alert('QF VALID');
+    } else {
+      alert('QF INVALID');
+    }
   }
 
   toggleFormBuilder() {

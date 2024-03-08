@@ -1,11 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import {
-  FormGroup,
-  FormBuilder,
-  Validators,
-  FormArray,
-  Form,
-} from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-form-builder',
@@ -34,9 +28,9 @@ export class FormBuilderComponent implements OnInit {
 
   onSetAnswers(radioForm: FormGroup) {
     if (radioForm.valid) {
-      alert('VALID');
+      // alert('VALID');
     } else {
-      alert('INVALID');
+      // alert('INVALID');
     }
   }
 

@@ -16,21 +16,23 @@
             </ng-container>
             <ng-template #radio>
                 <ng-container>
-                    <label for="qRadio">{{ q.value['question'] }}</label>
-                    <input type="radio" name="choices">
-                    <label for="choices">{{ q.value['choices'].choiceA }}</label><br>
+                    <label for="qRadio">{{ q.value['question'] }}</label><br>
 
-                    <input type="radio" name="choices">
-                    <label for="choices">{{ q.value['choices'].choiceB }}</label><br>
+                    <input type="radio" name="answer" formControlName="answer" value="choiceA">
+                    <label for="answer">{{ q.value['choices'].choiceA }}</label><br>
 
-                    <input type="radio" name="choices">
-                    <label for="choices">{{ q.value['choices'].choiceC }}</label><br>
+                    <input type="radio" name="answer" formControlName="answer" value="choiceB">
+                    <label for="answer">{{ q.value['choices'].choiceB }}</label><br>
 
-                    <input type="radio" name="choices">
-                    <label for="choices">{{ q.value['choices'].choiceD }}</label><br>
+                    <input type="radio" name="answer" formControlName="answer" value="choiceC">
+                    <label for="answer">{{ q.value['choices'].choiceC }}</label><br>
+
+                    <input type="radio" name="answer" formControlName="answer" value="choiceD">
+                    <label for="answer">{{ q.value['choices'].choiceD }}</label><br>
                 </ng-container>
             </ng-template>
         </div>
-        <button type="submit">Submit</button>
     </div>
+    <button type="submit">Submit</button>
+    <br>questionForms: {{ questionForms.valid }}
 </form>
