@@ -3,7 +3,8 @@
 <!-- make a button that will open the floating form builder interface -->
 
 <button type="button" (click)="toggleFormBuilder()">Form Builder</button>
-<app-form-builder *ngIf="showForm" (createQuestionForm)="createQuestionForm($event)"></app-form-builder>
+<app-form-builder *ngIf="showForm" (createQuestionForm)="createQuestionForm($event)" [editQuestionForm]="editForm"
+    [questionFormToBeEdited]="questionFormToBeEdited"></app-form-builder>
 
 <!-- NGfor to generate the list of questions from the survey form array -->
 
@@ -49,6 +50,9 @@
                 <input type="radio" name="answer" formControlName="answer" value="choice5">
                 <label for="answer">{{ q.value['choices'].choice5 }}</label><br>
             </ng-template>
+            <button type="button" (click)="editQuestionForm(q)">Edit</button>
+            q: {{ q.value | json }}
+            editForm: {{ editForm }}
             isValid: {{ q.valid }}
         </div>
     </div>

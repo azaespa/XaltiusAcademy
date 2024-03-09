@@ -5,6 +5,8 @@ import {
   FormArray,
   Validators,
   ValidatorFn,
+  Form,
+  AbstractControl,
 } from '@angular/forms';
 
 @Component({
@@ -14,8 +16,10 @@ import {
 })
 export class SurveyFormComponent implements OnInit {
   surveyForm: FormGroup = new FormGroup({});
+  questionFormToBeEdited: FormGroup = new FormGroup({});
 
   showForm: boolean = true;
+  editForm: boolean = false;
 
   constructor(private formBuilder: FormBuilder) {}
 
@@ -48,6 +52,11 @@ export class SurveyFormComponent implements OnInit {
         })
       );
     }
+  }
+
+  editQuestionForm(q: AbstractControl) {
+    this.editForm = !this.editForm;
+    this.questionFormToBeEdited = q as FormGroup;
   }
 
   formTest() {

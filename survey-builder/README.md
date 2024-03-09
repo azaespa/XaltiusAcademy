@@ -24,6 +24,6 @@ The interface would also enable setting up conditional logic (e.g., if Question 
 
 Validation Rules: Creators can define validation rules for each question:
 
-1.  Mandatory fields
-2.  Character limits for text inputs
+1.  ~~Mandatory fields~~
+2.  ~~Character limits for text inputs~~
 3.  Specific number ranges for ratings

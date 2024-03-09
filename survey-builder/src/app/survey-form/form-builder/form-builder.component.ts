@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 
 @Component({
@@ -29,6 +29,8 @@ export class FormBuilderComponent implements OnInit {
 
   isChecked: boolean = false;
 
+  @Input() editQuestionForm: boolean = false;
+  @Input() questionFormToBeEdited: FormGroup = new FormGroup({});
   @Output() createQuestionForm = new EventEmitter<FormGroup>();
 
   constructor(private formBuilder: FormBuilder) {
@@ -48,6 +50,12 @@ export class FormBuilderComponent implements OnInit {
   }
 
   ngOnInit(): void {}
+
+  isCheckedEdit(type: string): boolean {
+    return this.questionFormToBeEdited.value['answerInputType'] == type
+      ? true
+      : false;
+  }
 
   onCreateQuestionForm(questionForm: FormGroup) {
     if (questionForm.valid) {

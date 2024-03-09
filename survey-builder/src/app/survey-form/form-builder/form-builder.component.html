@@ -1,67 +1,90 @@
 <h1>Form Builder</h1>
-<form action="" [formGroup]="fbForm" (ngSubmit)="onCreateQuestionForm(fbForm)">
-    <h3>Add a question</h3>
-    <input type="text" #questionBuilder name="questionBuilder" id="questionBuilder" formControlName="questionBuilder">
+<ng-template #create>
+    <form action="" [formGroup]="fbForm" (ngSubmit)="onCreateQuestionForm(fbForm)">
+        <h3>Add a question</h3>
+        <input type="text" #questionBuilder name="questionBuilder" id="questionBuilder"
+            formControlName="questionBuilder">
 
-    <h3>Type of answer input</h3>
-    <input type="radio" #radio name="answerInputType" id="radio" formControlName="answerInputType" value="radio">
-    <label>Radio</label>
-    <input type="radio" name="answerInputType" id="text" formControlName="answerInputType" value="text">
-    <label>Text</label>
-    <input type="radio" #rating name="answerInputType" id="rating" formControlName="answerInputType" value="rating">
-    <label>Rating</label>
+        <h3>Type of answer input</h3>
+        <input type="radio" #radio name="answerInputType" id="radio" formControlName="answerInputType" value="radio">
+        <label>Radio</label>
+        <input type="radio" #text name="answerInputType" id="text" formControlName="answerInputType" value="text">
+        <label>Text</label>
+        <input type="radio" #rating name="answerInputType" id="rating" formControlName="answerInputType" value="rating">
+        <label>Rating</label>
 
-    <!-- I used formGroup instead of formGroupName -->
-    <!-- even we already added fbRadioForm to fbForm as 'choices' -->
-    <!-- fbForm is not reading it as a new data -->
-    <!-- fbForm 'choices 'is just referencing the fbRadioForm data -->
-    <div *ngIf="radio.checked" [formGroup]="fbRadioForm">
-        <input type="radio" name="" id="">
-        <label>A.</label>
-        <input type="text" name="choiceA" id="" formControlName="choiceA">
-        <br>
+        <!-- I used formGroup instead of formGroupName -->
+        <!-- even we already added fbRadioForm to fbForm as 'choices' -->
+        <!-- fbForm is not reading it as a new data -->
+        <!-- fbForm 'choices 'is just referencing the fbRadioForm data -->
+        <div *ngIf="radio.checked" [formGroup]="fbRadioForm">
+            <input type="radio" name="" id="">
+            <label>A.</label>
+            <input type="text" name="choiceA" id="" formControlName="choiceA">
+            <br>
 
-        <input type="radio" name="" id="">
-        <label>B.</label>
-        <input type="text" name="choiceB" id="" formControlName="choiceB">
-        <br>
+            <input type="radio" name="" id="">
+            <label>B.</label>
+            <input type="text" name="choiceB" id="" formControlName="choiceB">
+            <br>
 
-        <input type="radio" name="" id="">
-        <label>C.</label>
-        <input type="text" name="choiceC" id="" formControlName="choiceC">
-        <br>
+            <input type="radio" name="" id="">
+            <label>C.</label>
+            <input type="text" name="choiceC" id="" formControlName="choiceC">
+            <br>
 
-        <input type="radio" name="" id="">
-        <label>D.</label>
-        <input type="text" name="choiceD" id="" formControlName="choiceD">
+            <input type="radio" name="" id="">
+            <label>D.</label>
+            <input type="text" name="choiceD" id="" formControlName="choiceD">
+            <br>
+        </div>
+        <div *ngIf="rating.checked" [formGroup]="fbRatingForm">
+            <input type="radio" name="" id="">
+            <label>1</label>
+            <input type="radio" name="" id="">
+            <label>2</label>
+            <input type="radio" name="" id="">
+            <label>3</label>
+            <input type="radio" name="" id="">
+            <label>4</label>
+            <input type="radio" name="" id="">
+            <label>5</label>
+        </div>
         <br>
-    </div>
-    <div *ngIf="rating.checked" [formGroup]="fbRatingForm">
-        <input type="radio" name="" id="">
-        <label>1</label>
-        <input type="radio" name="" id="">
-        <label>2</label>
-        <input type="radio" name="" id="">
-        <label>3</label>
-        <input type="radio" name="" id="">
-        <label>4</label>
-        <input type="radio" name="" id="">
-        <label>5</label>
-    </div>
-    <br>
-    <br>
-    <div formGroupArray="validators">
-        <label>Set Validators as required</label>
-        <input type="checkbox" #checkbox name="checkbox" [checked]="isChecked" (change)="isChecked = !isChecked"
-            formControlName="required">
-        {{isChecked}}
         <br>
-        <label>Set minimum length</label>
-        <input type="number" min="0" formControlName="minlength">
-    </div>
-    <br>
-    {{ fbForm.value | json }}
-    <br>
-    <br>
-    <button type="submit">Add</button> is fbForm valid: {{ fbForm.valid }}
-</form>
+        <div formGroupArray="validators">
+            <label>Set Validators as required</label>
+            <input type="checkbox" #checkbox name="checkbox" [checked]="isChecked" (change)="isChecked = !isChecked"
+                formControlName="required">
+            {{isChecked}}
+            <br>
+            <div *ngIf="text.checked">
+                <label>Set minimum length</label>
+                <input type="number" min="0" formControlName="minlength">
+            </div>
+        </div>
+        <br>
+        {{ fbForm.value | json }}
+        <br>
+        <br>
+        <button type="submit">Add</button> is fbForm valid: {{ fbForm.valid }}
+    </form>
+</ng-template>
+<div *ngIf="editQuestionForm; else create">
+    it works!
+    {{ questionFormToBeEdited.value | json }}
+    <form>
+        <h3>Edit your question</h3>
+        <input type="text" name="" value="{{ questionFormToBeEdited.value['question']}}">
+        <br>
+        <h3>Type of answer input</h3>
+        <input type="radio" #radioEdit name="" id="radio" value="radio" [checked]="isCheckedEdit('radio')">
+        <label>Radio</label>
+        <input type="radio" #textEdit name="" id="text" value="text" [checked]="isCheckedEdit('text')">
+        <label>Text</label>
+        <input type="radio" #ratingtextEdit name="" id="rating" value="rating" [checked]="isCheckedEdit('rating')">
+        <label>Rating</label>
+        <br>
+        <button type="submit">Save</button>
+    </form>
+</div>
