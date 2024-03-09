@@ -49,6 +49,7 @@
                 <input type="radio" name="answer" formControlName="answer" value="choice5">
                 <label for="answer">{{ q.value['choices'].choice5 }}</label><br>
             </ng-template>
+            isValid: {{ q.valid }}
         </div>
     </div>
     <button type="submit">Submit</button>

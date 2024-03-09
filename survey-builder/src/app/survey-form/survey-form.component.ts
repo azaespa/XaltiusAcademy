@@ -25,7 +25,7 @@ export class SurveyFormComponent implements OnInit {
     });
   }
 
-  get questionForms() {
+  get questionForms(): FormArray {
     return this.surveyForm.controls['questionForms'] as FormArray;
   }
 
@@ -34,7 +34,7 @@ export class SurveyFormComponent implements OnInit {
       this.questionForms.push(
         this.formBuilder.group({
           question: [questionForm.value['questionBuilder']],
-          answer: ['', Validators.required],
+          answer: ['', this.setValidators(questionForm)],
           answerInputType: [questionForm.value['answerInputType']],
         })
       );
@@ -42,7 +42,7 @@ export class SurveyFormComponent implements OnInit {
       this.questionForms.push(
         this.formBuilder.group({
           question: [questionForm.value['questionBuilder']],
-          answer: ['', Validators.required],
+          answer: ['', this.setValidators(questionForm)],
           answerInputType: [questionForm.value['answerInputType']],
           choices: [questionForm.value['choices']],
         })
@@ -56,6 +56,17 @@ export class SurveyFormComponent implements OnInit {
     } else {
       alert('QF INVALID');
     }
+  }
+
+  setValidators(questionForm: FormGroup) {
+    let validators: any = [];
+    if (questionForm.value['required']) {
+      validators.push(Validators.required);
+      validators.push(Validators.minLength(questionForm.value['minlength']));
+    } else {
+      validators.push(Validators.minLength(questionForm.value['minlength']));
+    }
+    return validators;
   }
 
   toggleFormBuilder() {

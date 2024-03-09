@@ -50,6 +50,16 @@
     </div>
     <br>
     <br>
+    <div formGroupArray="validators">
+        <label>Set Validators as required</label>
+        <input type="checkbox" #checkbox name="checkbox" [checked]="isChecked" (change)="isChecked = !isChecked"
+            formControlName="required">
+        {{isChecked}}
+        <br>
+        <label>Set minimum length</label>
+        <input type="number" min="0" formControlName="minlength">
+    </div>
+    <br>
     {{ fbForm.value | json }}
     <br>
     <br>

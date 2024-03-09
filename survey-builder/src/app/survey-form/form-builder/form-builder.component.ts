@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 
 @Component({
   selector: 'app-form-builder',
@@ -10,6 +10,8 @@ export class FormBuilderComponent implements OnInit {
   fbForm: FormGroup = this.formBuilder.group({
     questionBuilder: ['', Validators.required],
     answerInputType: ['', Validators.required],
+    required: [false, Validators.required],
+    minlength: ['0', Validators.required],
   });
   fbRadioForm: FormGroup = this.formBuilder.group({
     choiceA: ['', Validators.required],
@@ -24,6 +26,8 @@ export class FormBuilderComponent implements OnInit {
     choice4: ['4'],
     choice5: ['5'],
   });
+
+  isChecked: boolean = false;
 
   @Output() createQuestionForm = new EventEmitter<FormGroup>();
 

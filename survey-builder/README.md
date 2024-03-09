@@ -11,9 +11,9 @@ Note: Use reactive forms to manage complex form structures, including conditiona
 Form Builder Interface: Allows users (survey creators) to:
 
 1.  Design surveys. This includes:
-    a. adding (in progress)
+    a. ~~adding (in progress)~~
     b. editing
-    c. organizing questions of different types: (in progress)
+    c. ~~organizing questions of different types: (in progress)~~
     i. ~~multiple choice~~
     ii. ~~text input~~
     iii. ~~rating scale~~
