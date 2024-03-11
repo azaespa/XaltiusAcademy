@@ -64,7 +64,7 @@
             </div>
         </div>
         <br>
-        {{ fbForm.value | json }}
+        <!-- {{ fbForm.value | json }} -->
         <br>
         <br>
         <button type="submit">Add</button> is fbForm valid: {{ fbForm.valid }}
@@ -79,7 +79,7 @@
         <br>
         <h3>Type of answer input</h3>
         <input type="radio" #radioEdit name="" id="radio" value="radio" [checked]="isCheckedEdit('radio')">
-        <label>Radio</label>
+        <label>Multiple-choice</label>
         <input type="radio" #textEdit name="" id="text" value="text" [checked]="isCheckedEdit('text')">
         <label>Text</label>
         <input type="radio" #ratingtextEdit name="" id="rating" value="rating" [checked]="isCheckedEdit('rating')">
