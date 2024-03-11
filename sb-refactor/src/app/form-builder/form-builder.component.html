@@ -1,0 +1,6 @@
+<h1>Form Builder</h1>
+<form [formGroup]="questionForm" (ngSubmit)="sendForm()">
+    <label for="question">Add a question</label>
+    <input type="text" name="question" formControlName="question">
+    <button type="submit">Submit</button>
+</form>
