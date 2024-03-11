@@ -1,1 +1,9 @@
-<p>{{ question }}</p>
+<p>Question is: {{ surveyForm.value | json }}</p>
+<p>Answer type: {{ answerType }}</p>
+<div [formGroup]="surveyForm">
+    <div formArrayName="questionForms">
+        <div *ngFor="let qf of questionForms.controls; let i = index" [formGroupName]="i">
+            {{ qf.value | json }} {{i}}
+        </div>
+    </div>
+</div>

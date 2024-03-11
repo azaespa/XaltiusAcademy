@@ -2,5 +2,15 @@
 <form [formGroup]="questionForm" (ngSubmit)="sendForm()">
     <label for="question">Add a question</label>
     <input type="text" name="question" formControlName="question">
+    <br>
+
+    <h3>Select input type</h3>
+    <input type="radio" name="answerType" value="multiple-choice" formControlName="answerType">
+    <label>Multiple-choice</label>
+    <input type="radio" name="answerType" value="text" formControlName="answerType">
+    <label>Text</label>
+    <br>
+
+    <br>
     <button type="submit">Submit</button>
 </form>

@@ -20,6 +20,7 @@ export class FormBuilderComponent implements OnInit {
   ngOnInit(): void {
     this.questionForm = this.formBuilder.group({
       question: [''],
+      answerType: ['']
     });
   }
 

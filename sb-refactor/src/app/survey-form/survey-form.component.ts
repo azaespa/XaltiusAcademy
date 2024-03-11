@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
+import { FormGroup, FormArray, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-survey-form',
@@ -8,14 +9,29 @@ import { DataService } from '../data.service';
 })
 export class SurveyFormComponent implements OnInit {
   question: string = 'test';
+  answerType: string = '';
 
-  constructor(private dataService: DataService) {}
+  surveyForm: FormGroup = new FormGroup({});
+
+  constructor(private dataService: DataService, private formBuilder: FormBuilder) {}
 
   ngOnInit(): void {
+    this.surveyForm = this.formBuilder.group({
+      questionForms: this.formBuilder.array([])
+    })
     this.dataService.questionForm.subscribe({
       next: (dataValue) => {
-        this.question = dataValue.value['question'];
+        // this.question = dataValue.value['question'];
+        // this.answerType = dataValue.value['answerType'];
+        this.questionForms.push(this.formBuilder.group({
+          question: dataValue.value['question'],
+          answerType: dataValue.value['answerType']
+        }))
       },
     });
+  }
+
+  get questionForms(): FormArray {
+    return this.surveyForm.controls['questionForms'] as FormArray;
   }
 }
