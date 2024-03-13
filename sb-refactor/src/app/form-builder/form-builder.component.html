@@ -3,12 +3,19 @@
     <label for="question">Add a question</label>
     <input type="text" name="question" formControlName="question">
     <br>
+    <ng-container *ngIf="text.checked">
+        text is working!
+    </ng-container>
+    <ng-container *ngIf="multipleChoice.checked">
+        mc is working!
+    </ng-container> 
 
     <h3>Select input type</h3>
-    <input type="radio" name="answerType" value="multiple-choice" formControlName="answerType">
-    <label>Multiple-choice</label>
-    <input type="radio" name="answerType" value="text" formControlName="answerType">
+    <input type="radio" #text name="answerType" value="text" formControlName="answerType">
     <label>Text</label>
+    <br>
+    <input type="radio" #multipleChoice name="answerType" value="multiple-choice" formControlName="answerType">
+    <label>Multiple-choice</label>
     <br>
 
     <br>

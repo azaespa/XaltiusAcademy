@@ -1,9 +1,21 @@
-<p>Question is: {{ surveyForm.value | json }}</p>
-<p>Answer type: {{ answerType }}</p>
+<!-- <p>Question is: {{ surveyForm.value | json }}</p>
+<p>Answer type: {{ answerType }}</p> -->
 <div [formGroup]="surveyForm">
     <div formArrayName="questionForms">
         <div *ngFor="let qf of questionForms.controls; let i = index" [formGroupName]="i">
-            {{ qf.value | json }} {{i}}
+            <!-- {{ qf.value | json }} {{i}} -->
+            <ng-container *ngIf="qf.value['answerType'] == 'text'; else multipleChoice">
+                <h3>Question {{ i+1 }}</h3>
+                <p>{{ qf.value['question'] }}</p>
+                <input type="text" name="" id="">
+            </ng-container>
+            <ng-template #multipleChoice>
+                <ng-container>
+                    <h3>Question {{ i+1 }}</h3>
+                    <p>{{ qf.value['question'] }}</p>
+                    <input type="radio" name="" id="">
+                </ng-container>
+            </ng-template>
         </div>
     </div>
 </div>
