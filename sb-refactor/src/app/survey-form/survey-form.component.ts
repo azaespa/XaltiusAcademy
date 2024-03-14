@@ -10,6 +10,7 @@ import { FormGroup, FormArray, FormBuilder } from '@angular/forms';
 export class SurveyFormComponent implements OnInit {
   question: string = 'test';
   answerType: string = '';
+  editQuestionForm: boolean = false;
 
   surveyForm: FormGroup = new FormGroup({});
 
@@ -39,5 +40,9 @@ export class SurveyFormComponent implements OnInit {
 
   get questionForms(): FormArray {
     return this.surveyForm.controls['questionForms'] as FormArray;
+  }
+
+  editForm() {
+    this.dataService.editForm(!this.editQuestionForm);
   }
 }
