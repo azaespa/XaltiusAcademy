@@ -13,20 +13,26 @@ export class SurveyFormComponent implements OnInit {
 
   surveyForm: FormGroup = new FormGroup({});
 
-  constructor(private dataService: DataService, private formBuilder: FormBuilder) {}
+  constructor(
+    private dataService: DataService,
+    private formBuilder: FormBuilder
+  ) {}
 
   ngOnInit(): void {
     this.surveyForm = this.formBuilder.group({
-      questionForms: this.formBuilder.array([])
-    })
+      questionForms: this.formBuilder.array([]),
+    });
     this.dataService.questionForm.subscribe({
       next: (dataValue) => {
         // this.question = dataValue.value['question'];
         // this.answerType = dataValue.value['answerType'];
-        this.questionForms.push(this.formBuilder.group({
-          question: dataValue.value['question'],
-          answerType: dataValue.value['answerType']
-        }))
+        this.questionForms.push(
+          this.formBuilder.group({
+            question: dataValue.value['question'],
+            answerType: dataValue.value['answerType'],
+            choices: dataValue.value['choices'],
+          })
+        );
       },
     });
   }

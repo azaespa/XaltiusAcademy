@@ -1,14 +1,24 @@
 <h1>Form Builder</h1>
 <form [formGroup]="questionForm" (ngSubmit)="sendForm()">
-    <label for="question">Add a question</label>
-    <input type="text" name="question" formControlName="question">
+    <h3>Add a question</h3>
+    <input type="text" name="question" formControlName="question" placeholder="Type your question here">
     <br>
     <ng-container *ngIf="text.checked">
-        text is working!
+        <input type="text" placeholder="Answer placeholder">
     </ng-container>
-    <ng-container *ngIf="multipleChoice.checked">
-        mc is working!
-    </ng-container> 
+    <ng-container *ngIf="multipleChoice.checked" [formGroup]="choicesForm">
+        <input type="radio" name="" id="" disabled>
+        <input type="text" name="choiceA" id="" formControlName="choiceA" placeholder="Answer placeholder">
+        <br>
+        <input type="radio" name="" id="" disabled>
+        <input type="text" name="choiceB" id="" formControlName="choiceB" placeholder="Answer placeholder">
+        <br>
+        <input type="radio" name="" id="" disabled>
+        <input type="text" name="choiceC" id="" formControlName="choiceC" placeholder="Answer placeholder">
+        <br>
+        <input type="radio" name="" id="" disabled>
+        <input type="text" name="choiceD" id="" formControlName="choiceD" placeholder="Answer placeholder">
+    </ng-container>
 
     <h3>Select input type</h3>
     <input type="radio" #text name="answerType" value="text" formControlName="answerType">
@@ -17,6 +27,8 @@
     <input type="radio" #multipleChoice name="answerType" value="multiple-choice" formControlName="answerType">
     <label>Multiple-choice</label>
     <br>
+
+    {{ questionForm.value | json}}
 
     <br>
     <button type="submit">Submit</button>

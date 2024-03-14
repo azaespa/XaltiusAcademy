@@ -13,7 +13,17 @@
                 <ng-container>
                     <h3>Question {{ i+1 }}</h3>
                     <p>{{ qf.value['question'] }}</p>
-                    <input type="radio" name="" id="">
+                    <input type="radio" name="choices" id="">
+                    <label>{{ qf.value['choices'].choiceA }}</label>
+                    <br>
+                    <input type="radio" name="choices" id="">
+                    <label>{{ qf.value['choices'].choiceB }}</label>
+                    <br>
+                    <input type="radio" name="choices" id="">
+                    <label>{{ qf.value['choices'].choiceC }}</label>
+                    <br>
+                    <input type="radio" name="choices" id="">
+                    <label>{{ qf.value['choices'].choiceD }}</label>
                 </ng-container>
             </ng-template>
         </div>

@@ -11,6 +11,7 @@ export class FormBuilderComponent implements OnInit {
   question: string = '';
 
   questionForm: FormGroup = new FormGroup({});
+  choicesForm: FormGroup = new FormGroup({});
 
   constructor(
     private dataService: DataService,
@@ -20,8 +21,25 @@ export class FormBuilderComponent implements OnInit {
   ngOnInit(): void {
     this.questionForm = this.formBuilder.group({
       question: [''],
-      answerType: ['']
+      answerType: [''],
     });
+
+    this.choicesForm = this.formBuilder.group({
+      choiceA: [''],
+      choiceB: [''],
+      choiceC: [''],
+      choiceD: [''],
+    });
+
+    this.questionForm.controls['answerType'].valueChanges.subscribe(
+      (answerTypeVal) => {
+        if (answerTypeVal == 'text') {
+          this.questionForm.removeControl('choices');
+        } else if (answerTypeVal == 'multiple-choice') {
+          this.questionForm.addControl('choices', this.choicesForm);
+        }
+      }
+    );
   }
 
   sendForm() {
