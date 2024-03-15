@@ -8,7 +8,7 @@
                 <h3>Question {{ i+1 }}</h3>
                 <p>{{ qf.value['question'] }}</p>
                 <input type="text" name="" id="">
-                <button type="button" (click)="editForm()">Edit</button>
+                <button type="button" (click)="editForm(qf)">Edit</button>
             </ng-container>
             <ng-template #multipleChoice>
                 <ng-container>

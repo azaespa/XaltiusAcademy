@@ -8,7 +8,7 @@ import { Subject } from 'rxjs';
 export class DataService {
   public data = new Subject<any>();
   public questionForm = new Subject<FormGroup>();
-  public editQuestionForm = new Subject<boolean>();
+  public editQuestionForm = new Subject<FormGroup>();
 
   constructor() {}
 
@@ -16,7 +16,7 @@ export class DataService {
     this.data.next(_data);
   }
 
-  editForm(_editQuestionForm: boolean) {
+  editForm(_editQuestionForm: FormGroup) {
     this.editQuestionForm.next(_editQuestionForm);
   }
 

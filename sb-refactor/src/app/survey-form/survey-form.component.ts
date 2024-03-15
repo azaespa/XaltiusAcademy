@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
-import { FormGroup, FormArray, FormBuilder } from '@angular/forms';
+import { FormGroup, FormArray, FormBuilder, AbstractControl } from '@angular/forms';
 
 @Component({
   selector: 'app-survey-form',
@@ -42,7 +42,7 @@ export class SurveyFormComponent implements OnInit {
     return this.surveyForm.controls['questionForms'] as FormArray;
   }
 
-  editForm() {
-    this.dataService.editForm(!this.editQuestionForm);
+  editForm(qf: AbstractControl) {
+    this.dataService.editForm(qf as FormGroup);
   }
 }

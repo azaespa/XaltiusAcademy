@@ -9,7 +9,6 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 export class FormBuilderComponent implements OnInit {
   question: string = '';
-  editQuestionForm: boolean = false;
 
   questionForm: FormGroup = new FormGroup({});
   choicesForm: FormGroup = new FormGroup({});
@@ -44,8 +43,10 @@ export class FormBuilderComponent implements OnInit {
 
     this.dataService.editQuestionForm.subscribe({
       next: (editQuestionFormVal) => {
-        this.editQuestionForm = editQuestionFormVal;
-        console.log(this.editQuestionForm);
+        this.questionForm.value['question'] = editQuestionFormVal.value['question']
+        this.questionForm.value['answerType'] = editQuestionFormVal.value['answerType']
+
+        console.log(this.questionForm)
       },
     });
   }
