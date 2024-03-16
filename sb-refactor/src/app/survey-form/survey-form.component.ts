@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
-import { FormGroup, FormArray, FormBuilder, AbstractControl } from '@angular/forms';
+import {
+  FormGroup,
+  FormArray,
+  FormBuilder,
+  AbstractControl,
+} from '@angular/forms';
 
 @Component({
   selector: 'app-survey-form',
@@ -10,7 +15,6 @@ import { FormGroup, FormArray, FormBuilder, AbstractControl } from '@angular/for
 export class SurveyFormComponent implements OnInit {
   question: string = 'test';
   answerType: string = '';
-  editQuestionForm: boolean = false;
 
   surveyForm: FormGroup = new FormGroup({});
 
@@ -40,9 +44,5 @@ export class SurveyFormComponent implements OnInit {
 
   get questionForms(): FormArray {
     return this.surveyForm.controls['questionForms'] as FormArray;
-  }
-
-  editForm(qf: AbstractControl) {
-    this.dataService.editForm(qf as FormGroup);
   }
 }
