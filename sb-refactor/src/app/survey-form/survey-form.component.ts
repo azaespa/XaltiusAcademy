@@ -15,6 +15,7 @@ import {
 export class SurveyFormComponent implements OnInit {
   question: string = 'test';
   answerType: string = '';
+  editQuestionForm: boolean = false;
 
   surveyForm: FormGroup = new FormGroup({});
 
@@ -27,7 +28,7 @@ export class SurveyFormComponent implements OnInit {
     this.surveyForm = this.formBuilder.group({
       questionForms: this.formBuilder.array([]),
     });
-    this.dataService.questionForm.subscribe({
+    this.dataService.surveyForm.subscribe({
       next: (dataValue) => {
         // this.question = dataValue.value['question'];
         // this.answerType = dataValue.value['answerType'];
@@ -38,6 +39,7 @@ export class SurveyFormComponent implements OnInit {
             choices: dataValue.value['choices'],
           })
         );
+        console.log(this.surveyForm);
       },
     });
   }

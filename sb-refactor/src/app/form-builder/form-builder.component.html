@@ -42,6 +42,7 @@
 <!-- User view = Only answering function -->
 <button type="button" (click)="createMcForm()">Multiple Choice</button>
 <button type="button" (click)="createTextForm()">Text</button>
+<button type="button" (click)="sendForm()">👁️</button>
 <br>
 <br>
 form array goes here
@@ -49,12 +50,14 @@ form array goes here
     <div formArrayName="questionForms">
         <div *ngFor="let qf of questionForms.controls; let i = index" [formGroupName]="i">
             <ng-container *ngIf="qf.value['answerType'] == 'text'; else multipleChoice">
+                <h3>Question {{ i+1 }}</h3>
                 <input type="text" placeholder="Type your question here..." formControlName="question">
                 <br>
                 <input type="text" placeholder="Their answer will go here..." disabled>
             </ng-container>
             <ng-template #multipleChoice>
                 <ng-container *ngIf="qf.value['answerType'] == 'multipleChoice'">
+                    <h3>Question {{ i+1 }}</h3>
                     <input type="text" name="" id="" formControlName="question">
                     <br>
                     <div formGroupName="choices">

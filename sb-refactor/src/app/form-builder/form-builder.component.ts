@@ -17,7 +17,13 @@ export class FormBuilderComponent implements OnInit {
 
   ngOnInit(): void {
     this.surveyForm = this.formBuilder.group({
-      questionForms: this.formBuilder.array([]),
+      questionForms: this.formBuilder.array([
+        this.formBuilder.group({
+          id: [new Date().getTime() + Math.random()],
+          question: [''],
+          answerType: ['text'],
+        }),
+      ]),
     });
   }
 
@@ -28,6 +34,7 @@ export class FormBuilderComponent implements OnInit {
   createMcForm() {
     this.questionForms.push(
       this.formBuilder.group({
+        id: [new Date().getTime() + Math.random()],
         question: [''],
         answerType: ['multipleChoice'],
         choices: this.formBuilder.group({
@@ -43,6 +50,7 @@ export class FormBuilderComponent implements OnInit {
   createTextForm() {
     this.questionForms.push(
       this.formBuilder.group({
+        id: [new Date().getTime() + Math.random()],
         question: [''],
         answerType: ['text'],
       })
@@ -50,6 +58,6 @@ export class FormBuilderComponent implements OnInit {
   }
 
   sendForm() {
-    // this.dataService.sendForm(this.questionForm);
+    this.dataService.sendForm(this.surveyForm);
   }
 }

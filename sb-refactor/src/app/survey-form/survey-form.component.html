@@ -10,7 +10,7 @@
                 <input type="text" name="" id="">
             </ng-container>
             <ng-template #multipleChoice>
-                <ng-container>
+                <ng-container *ngIf="qf.value['answerType'] == 'multipleChoice'">
                     <h3>Question {{ i+1 }}</h3>
                     <p>{{ qf.value['question'] }}</p>
                     <input type="radio" name="choices" id="">

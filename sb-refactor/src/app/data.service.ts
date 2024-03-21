@@ -7,7 +7,7 @@ import { Subject } from 'rxjs';
 })
 export class DataService {
   public data = new Subject<any>();
-  public questionForm = new Subject<FormGroup>();
+  public surveyForm = new Subject<FormGroup>();
 
   constructor() {}
 
@@ -15,7 +15,7 @@ export class DataService {
     this.data.next(_data);
   }
 
-  sendForm(_questionForm: FormGroup) {
-    this.questionForm.next(_questionForm);
+  sendForm(_surveyForm: FormGroup) {
+    this.surveyForm.next(_surveyForm);
   }
 }
