@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService } from '../data.service';
-import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
+import { FormGroup, FormBuilder, FormArray, Form } from '@angular/forms';
 
 @Component({
   selector: 'app-form-builder',
@@ -8,18 +7,14 @@ import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
   styleUrls: ['./form-builder.component.css'],
 })
 export class FormBuilderComponent implements OnInit {
-  surveyForm: FormGroup = new FormGroup({});
+  fbForm: FormGroup = new FormGroup({});
 
-  constructor(
-    private dataService: DataService,
-    private formBuilder: FormBuilder
-  ) {}
+  constructor(private formBuilder: FormBuilder) {}
 
   ngOnInit(): void {
-    this.surveyForm = this.formBuilder.group({
+    this.fbForm = this.formBuilder.group({
       questionForms: this.formBuilder.array([
         this.formBuilder.group({
-          id: [new Date().getTime() + Math.random()],
           question: [''],
           answerType: ['text'],
         }),
@@ -28,36 +23,16 @@ export class FormBuilderComponent implements OnInit {
   }
 
   get questionForms(): FormArray {
-    return this.surveyForm.controls['questionForms'] as FormArray;
-  }
-
-  createMcForm() {
-    this.questionForms.push(
-      this.formBuilder.group({
-        id: [new Date().getTime() + Math.random()],
-        question: [''],
-        answerType: ['multipleChoice'],
-        choices: this.formBuilder.group({
-          choiceA: [''],
-          choiceB: [''],
-          choiceC: [''],
-          choiceD: [''],
-        }),
-      })
-    );
+    return this.fbForm.controls['questionForms'] as FormArray;
   }
 
   createTextForm() {
     this.questionForms.push(
       this.formBuilder.group({
-        id: [new Date().getTime() + Math.random()],
         question: [''],
         answerType: ['text'],
       })
     );
-  }
-
-  sendForm() {
-    this.dataService.sendForm(this.surveyForm);
+    console.log(this.fbForm);
   }
 }

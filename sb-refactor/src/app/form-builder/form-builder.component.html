@@ -1,86 +1,17 @@
 <h1>Form Builder</h1>
-<!-- <form *ngIf="false" [formGroup]="questionForm" (ngSubmit)="sendForm()">
-    <h3>Add a question</h3>
-    <input type="text" name="question" formControlName="question" placeholder="Type your question here">
-    <br>
-    <ng-container *ngIf="text.checked">
-        <input type="text" placeholder="Answer placeholder">
-    </ng-container>
-    <ng-container *ngIf="multipleChoice.checked" [formGroup]="choicesForm">
-        <input type="radio" name="" id="" disabled>
-        <input type="text" name="choiceA" id="" formControlName="choiceA" placeholder="Answer placeholder">
-        <br>
-        <input type="radio" name="" id="" disabled>
-        <input type="text" name="choiceB" id="" formControlName="choiceB" placeholder="Answer placeholder">
-        <br>
-        <input type="radio" name="" id="" disabled>
-        <input type="text" name="choiceC" id="" formControlName="choiceC" placeholder="Answer placeholder">
-        <br>
-        <input type="radio" name="" id="" disabled>
-        <input type="text" name="choiceD" id="" formControlName="choiceD" placeholder="Answer placeholder">
-    </ng-container>
-
-    <h3>Select input type</h3>
-    <input type="radio" #text name="answerType" value="text" formControlName="answerType">
-    <label>Text</label>
-    <br>
-    <input type="radio" #multipleChoice name="answerType" value="multiple-choice" formControlName="answerType">
-    <label>Multiple-choice</label>
-    <br>
-
-    {{ questionForm.value | json}
-
-    <br>
-    <button type="submit">Submit</button>
-</form> -->
-
-<!-- When multiple choice is clicked, the FormGroup Question1 will be pushed to FormArray which will then looped through in the view -->
-<!-- In the view, all questions is editable -->
-<!-- It can be publish after editing -->
-<!-- Published version will go to another component -->
-<!-- Admin view = full editing function -->
-<!-- User view = Only answering function -->
-<button type="button" (click)="createMcForm()">Multiple Choice</button>
+<button type="button">Multiple choice</button>
 <button type="button" (click)="createTextForm()">Text</button>
-<button type="button" (click)="sendForm()">👁️</button>
-<br>
-<br>
-form array goes here
-<div [formGroup]="surveyForm">
+
+<div [formGroup]="fbForm">
     <div formArrayName="questionForms">
-        <div *ngFor="let qf of questionForms.controls; let i = index" [formGroupName]="i">
-            <ng-container *ngIf="qf.value['answerType'] == 'text'; else multipleChoice">
-                <h3>Question {{ i+1 }}</h3>
-                <input type="text" placeholder="Type your question here..." formControlName="question">
+        <div *ngFor="let qf of questionForms.controls; let i = index" [formGroupName]="i" class="question-forms">
+            <ng-container *ngIf="qf.value['answerType'] == 'text'">
+                <span>{{i + 1}}.</span>
+                <input type="text" formControlName="question" placeholder="..." class="questionInput">
                 <br>
-                <input type="text" placeholder="Their answer will go here..." disabled>
+                <br>
+                <input type="text" placeholder="Type your answer here..." class="answerInput answerInputText" disabled>
             </ng-container>
-            <ng-template #multipleChoice>
-                <ng-container *ngIf="qf.value['answerType'] == 'multipleChoice'">
-                    <h3>Question {{ i+1 }}</h3>
-                    <input type="text" name="" id="" formControlName="question">
-                    <br>
-                    <div formGroupName="choices">
-                        <input type="radio" name="" id="" disabled>
-                        <input type="text" name="choiceA" id="" formControlName="choiceA"
-                            placeholder="Answer placeholder">
-                        <br>
-                        <input type="radio" name="" id="" disabled>
-                        <input type="text" name="choiceB" id="" formControlName="choiceB"
-                            placeholder="Answer placeholder">
-                        <br>
-                        <input type="radio" name="" id="" disabled>
-                        <input type="text" name="choiceC" id="" formControlName="choiceC"
-                            placeholder="Answer placeholder">
-                        <br>
-                        <input type="radio" name="" id="" disabled>
-                        <input type="text" name="choiceD" id="" formControlName="choiceD"
-                            placeholder="Answer placeholder">
-                    </div>
-                </ng-container>
-            </ng-template>
-            <br>
-            {{ qf.value | json }}
         </div>
     </div>
 </div>
