@@ -16,7 +16,13 @@ export class FormBuilderComponent implements OnInit {
       questionForms: this.formBuilder.array([
         this.formBuilder.group({
           question: [''],
-          answerType: ['text'],
+          answerType: ['multiple-choice'],
+          choices: this.formBuilder.group({
+            choiceA: [''],
+            choiceB: [''],
+            choiceC: [''],
+            choiceD: [''],
+          }),
         }),
       ]),
     });
@@ -33,6 +39,21 @@ export class FormBuilderComponent implements OnInit {
         answerType: ['text'],
       })
     );
-    console.log(this.fbForm);
+  }
+
+  createMcForm() {
+    this.questionForms.push(
+      this.formBuilder.group({
+        question: [''],
+        answerType: ['multiple-choice'],
+        choices: this.formBuilder.group({
+          choiceA: [''],
+          choiceB: [''],
+          choiceC: [''],
+          choiceD: [''],
+        }),
+      })
+    );
+    console.log(this.questionForms);
   }
 }

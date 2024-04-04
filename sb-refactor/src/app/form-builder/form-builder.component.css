@@ -98,3 +98,49 @@ main .fb-form .form-array {
 .form-array .question-forms>.answer-input::placeholder {
     color: rgba(63, 162, 255, 0.6);
 }
+
+.question-forms .choices-container>.choices {
+    margin-top: 1rem;
+    height: 3rem;
+    width: 100%;
+    background-color: rgba(63, 162, 255, 0.1);
+    border: 1px solid rgba(34, 104, 169, 0.7);
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.question-forms .choices-container>.choices:hover,
+.question-forms .choices-container>.choices:hover>* {
+    cursor: pointer;
+}
+
+.choices-container .choices>.choice {
+    margin: 0 0.5rem;
+    height: 2rem;
+    width: 2rem;
+    color: rgb(34, 103, 169);
+    background-color: white;
+    border: 1px solid rgba(34, 104, 169, 0.7);
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.choices-container .choices>.choice-input {
+    height: 2rem;
+    width: 100%;
+    margin-right: 0.5rem;
+    font-size: 1.25rem;
+    border: none;
+    background-color: transparent;
+}
+
+.choices-container .choices>.choice-input::placeholder {
+    color: rgba(34, 104, 169, 0.7);
+}
+
+.choices-container .choices>.choice-input:focus {
+    outline: none;
+}
