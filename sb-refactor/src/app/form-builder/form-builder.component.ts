@@ -12,6 +12,8 @@ export class FormBuilderComponent implements OnInit {
   constructor(private formBuilder: FormBuilder) {}
 
   ngOnInit(): void {
+    // last save in db will be here
+    //
     this.fbForm = this.formBuilder.group({
       questionForms: this.formBuilder.array([
         this.formBuilder.group({
@@ -54,6 +56,6 @@ export class FormBuilderComponent implements OnInit {
         }),
       })
     );
-    console.log(this.questionForms);
+    console.log(this.questionForms.value);
   }
 }

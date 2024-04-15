@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService } from '../data.service';
 
 @Component({
   selector: 'app-survey-form',
@@ -8,14 +7,5 @@ import { DataService } from '../data.service';
 })
 export class SurveyFormComponent implements OnInit {
   question: string = 'test';
-
-  constructor(private dataService: DataService) {}
-
-  ngOnInit(): void {
-    this.dataService.data.subscribe({
-      next: (dataValue) => {
-        this.question = dataValue;
-      },
-    });
-  }
+  ngOnInit(): void {}
 }
